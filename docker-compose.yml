@@ -1,13 +1,19 @@
 services:
+  outline:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - redis
+      - postgres
+    environment:
+      DATABASE_URL: postgres://user:pass@postgres:5432/outline
+      REDIS_URL: redis://redis:6379
   redis:
     image: redis
-    ports:
-      - "127.0.0.1:6379:6379"
     user: "redis:redis"
   postgres:
     image: postgres
-    ports:
-      - "127.0.0.1:5432:5432"
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: pass
