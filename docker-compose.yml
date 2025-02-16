@@ -9,6 +9,8 @@ services:
     environment:
       DATABASE_URL: postgres://user:pass@postgres:5432/outline
       REDIS_URL: redis://redis:6379
+    volumes:
+      - storage-data:/var/lib/outline/data
   redis:
     image: redis
     user: "redis:redis"
